@@ -1,0 +1,18 @@
+{
+  "name": "kiosk-wayfinding",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build-all": "vite build --emptyOutDir --mode 'example' --outDir 'build/user-services/' && cd build && zip -FS -r wayfinding.zip . -x *.zip && cd ../",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.2",
+    "animejs": "^3.2.1",
+    "svelte": "^3.55.1",
+    "vite": "^4.1.0",
+    "vite-plugin-svelte-svg": "^2.2.1"
+  }
+}
