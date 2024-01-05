@@ -1,4 +1,5 @@
 <script>
+  import config from "../config";
   export let map;
   export let destination;
   export let start;

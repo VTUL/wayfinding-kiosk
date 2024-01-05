@@ -1,5 +1,6 @@
 <script>
   import {sortFloor, tapTimeline} from "../store.js";
+  import config from "../config";
   
   function changeSort() {
     $sortFloor = !$sortFloor;
