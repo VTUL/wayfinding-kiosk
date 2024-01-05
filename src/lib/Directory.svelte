@@ -82,17 +82,13 @@
 {#if config.nearest}
   <div class="floor-container">
     <h2 class="floor-heading">{config.appearance.nearestText}</h2>
-    <table>
-      <tbody id="nearest">
-        {#each config.nearest as nearestLocation}
-          <tr on:click={() => selectDestination(nearestLocation, true)}>
-            <td class="nearest-td">
-              {nearestLocation.name}
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
+    {#each config.nearest as nearestLocation}
+        <div class="table-row" on:click={() => selectDestination(nearestLocation, true)}>
+            <div class="table-cell">
+                {nearestLocation.name}
+            </div>         
+        </div>  
+    {/each}
   </div>
 {/if}
 <Sort></Sort>

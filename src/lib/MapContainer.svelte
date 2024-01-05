@@ -126,22 +126,25 @@
     }
 </script>
 
-<div class="options-container">
-    <div class="take-photo">
-        {@html config.appearance.takePhoto}
-    </div>
-    <div class="take-photo-text">
-        <h2>Take a photo of the map before you go</h2>
-    </div>
-    {#if $splitFloors}
-        <div class="change-transport-method">
-            <h2>You are currently traveling via {$transport.name}</h2>
-            <button id="change-transport-button" on:click={() => changeTransport()}>Change to {$transport.id === "elevator" ? "the stairs" : "the elevators"}
+<div class="flex-center">
+    <div class="options-container">
+        <div class="take-photo-container">
+            <div class="take-photo-text">
+                <h2>Take a photo before you go</h2>
+            </div>
+            <div class="take-photo">
+                {@html config.appearance.takePhoto}
+            </div>
         </div>
-    {/if}
-    <div class="start-over">
-        <h2>Or</h2>
-        <button id="start-over-button" on:click={() => {location.reload();}}>Start Over</button>
+        {#if $splitFloors}
+            <div class="change-transport-method">
+                <h2>Traveling via {$transport.name}</h2>
+                <button id="change-transport-button" on:click={() => changeTransport()}>Switch to {$transport.id === "elevator" ? "Stairs" : "Elevator"}
+            </div>
+        {/if}
+        <div class="start-over">
+            <button id="start-over-button" on:click={() => {location.reload();}}>Start Over</button>
+        </div>
     </div>
 </div>
 <div class="map-container">
@@ -152,49 +155,4 @@
 </div>
 
 <style>
-    .map-container {
-        height: 88vh;
-        display: flex;
-        flex-direction: column;
-        justify-items: flex-start;
-        padding: 0 1rem;
-        width: 100%;
-    }
-
-    .options-container {
-        height: 12vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .take-photo {
-        width: 15%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 100%;
-    }
-
-    .take-photo-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 25%;
-    }
-
-    .change-transport-method, .start-over {
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    .change-transport-method {
-        width: 35%;
-    }
 </style>

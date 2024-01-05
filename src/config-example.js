@@ -16,7 +16,7 @@ export default {
         nearestText: "or find the nearest...",
         specialEventText: "Special Events",
         sortText: "Sort ",
-        byAlphaText: "Alphabetically",
+        byAlphaText: "A - Z",
         byFloorText: "by Floor",
         navigatingText: "Navigating from ",
     },

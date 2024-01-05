@@ -10,27 +10,15 @@
 {#if !$showMap}
   <Header />
 {/if}
-
-<main style={"background-color: " + config.appearance.backgroundColor + "; color: " + config.appearance.textColor + ";"}>
-  {#if $showMap}
-     <MapContainer />
-  {:else}
-    <Directory />
+<div class="scroll-container">
+    <main class={$showMap ? "map-main" : "dir-main"} style={"background-color: " + config.appearance.backgroundColor + "; color: " + config.appearance.textColor + ";"}>
+      {#if $showMap}
+        <MapContainer />
+      {:else}
+        <Directory />
+      {/if}
+    </main>
+  </div>
+  {#if !$showMap}
+    <Footer />
   {/if}
-</main>
-
-{#if !$showMap}
-  <Footer />
-{/if}
-
-<style>
-  main {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    overflow: hidden;
-  }
-</style>

@@ -1,81 +1,54 @@
 <script>
-  import config from '../config.js';
-  export let selectDestination;
-  let allLocations = config.locations.concat(config.specialEvents)
-</script>
-
-<div class="floor-container">
-  <h2 class="floor-heading">Locations</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          Floor
-        </th>
-        <th>
-          Room
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each allLocations.sort((a, b) => {return a.name > b.name ? 1 : 0}) as floorLocation, index}
-        {#if index < config.behavior.alphaCount}
-        <tr on:click={() => selectDestination(floorLocation)}>
-          <td>
-            {floorLocation.name}
-          </td>
-          <td>
-            {floorLocation.floor}
-          </td>
-          <td>
-            {floorLocation.roomNumber}
-          </td>
-        </tr>
-        {/if}
-      {/each}
-    </tbody>
-  </table>
-  </div>
-  {#if allLocations.length > config.behavior.alphaCount}
-  <div class="floor-container">
-  <h2 class="floor-heading blank-heading"> </h2>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          Floor
-        </th>
-        <th>
-          Room
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each allLocations.sort((a, b) => {return a.name > b.name ? 1 : 0}) as floorLocation, index}
-        {#if index >= config.behavior.alphaCount}
-        <tr on:click={() => selectDestination(floorLocation)}>
-          <td>
-            {floorLocation.name}
-          </td>
-          <td>
-            {floorLocation.floor}
-          </td>
-          <td>
-            {floorLocation.roomNumber}
-          </td>
-        </tr>
-        {/if}
-      {/each}
-    </tbody>
-  </table>
-</div>
-{/if}
-<style>
+    import {afterUpdate} from 'svelte';
+    import config from '../config.js';
+    export let selectDestination;
+    let allLocations = config.specialEvents ? config.locations.concat(config.specialEvents) : config.locations
+    let columns = 2;
+    
+    function getColumns() {
+      let column = document.getElementsByClassName("alpha-container");
+      let columnWidth = column[0].clientWidth
+      let parentWidth = column[0].parentElement.clientWidth
+      columns = Math.floor(parentWidth/columnWidth)
+    }
   
-</style>
+    afterUpdate(() => {
+      getColumns()
+    })    
+  </script>
+  
+  <svelte:window on:resize={getColumns} />
+  <h2 class="alpha-heading">Locations</h2>
+  <div class="alpha-table-head">
+      {#each {length: columns} as _}
+      <div class="table-row table-heading">
+          <div class="table-cell">
+              Name
+          </div>
+          <div class="table-cell">
+              Floor
+          </div> 
+          <div class="table-cell">
+              Room
+          </div>           
+        </div>
+      {/each}
+  </div>
+  <div class="alpha-container"> 
+    {#each allLocations.sort((a, b) => {return a.name > b.name ? 1 : 0}) as floorLocation}
+      <div class="table-row" on:click={() => selectDestination(floorLocation)}>
+          <div class="table-cell">
+              {floorLocation.name}
+          </div>
+          <div class="table-cell">
+              {floorLocation.floor}
+          </div> 
+          <div class="table-cell">
+              {floorLocation.roomNumber}
+          </div>           
+      </div>     
+    {/each}
+  </div>
+    
+  <style>
+  </style>
