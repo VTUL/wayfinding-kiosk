@@ -26,3 +26,4 @@ dist-ssr
 *.sw?
 build/
 kiosk-wayfinding.code-workspace
+wayfinding-kiosk.code-workspace
