@@ -223,10 +223,14 @@ button {
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px solid white;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
     break-inside: avoid;
 }
 
 .floor-container {
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
     break-inside: avoid;
     padding-top: 2rem;
 }
